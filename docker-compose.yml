@@ -2,9 +2,10 @@ version: '3'
 services:
   jupyter-tutorial:
     build: ./dfile/note/
-    container_name: jupyter.local
+    container_name: jupyter.vcloudlab.pro
     ports:
       - "8888:8888"
+      - "5000:5000"
     volumes:
       - ./work/:/home/jovyan/work/
     #  - /home/user/.aws/:/home/jovyan/.aws/
@@ -12,20 +13,20 @@ services:
 
   dynamoDB:
     image: amazon/dynamodb-local
-    container_name: cc104.dynamodb.local
+    container_name: dynamodb.vcloudlab.pro
     ports:
       - "8000:8000"
     volumes:
       - ./dynamodb_data/data:/home/dynamodblocal/data
   sqs:
     image: vsouza/sqs-local 
-    container_name: cc104.sqs.local
+    container_name: sqs.vcloudlab.pro
     ports:
       - "9324:9324"
 
   fake-s3:
     image: gliffy/fake-s3
-    container_name: cc104.s3.local
+    container_name: s3.vcloudlab.pro
     ports:
       - "4569:4569"
     volumes:
