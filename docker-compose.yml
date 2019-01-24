@@ -1,0 +1,30 @@
+version: '3'
+services:
+  jupyter-tutorial:
+    build: ./dfile/note/
+    container_name: jupyter.local
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./work/:/home/jovyan/work/
+    #  - /home/user/.aws/:/home/jovyan/.aws/
+    command: start-notebook.sh --NotebookApp.token=''
+
+  dynamoDB:
+    image: amazon/dynamodb-local
+    container_name: cc104.dynamodb.local
+    ports:
+      - "8000:8000"
+  sqs:
+    image: vsouza/sqs-local 
+    container_name: cc104.sqs.local
+    ports:
+      - "9324:9324"
+
+  fake-s3:
+    image: gliffy/fake-s3
+    container_name: cc104.s3.local
+    ports:
+      - "4569:4569"
+    volumes:
+      - ./pic/:/fakes3_root
