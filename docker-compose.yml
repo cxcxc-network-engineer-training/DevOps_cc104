@@ -31,3 +31,12 @@ services:
       - "4569:4569"
     volumes:
       - ./pic/:/fakes3_root
+  jupyter-worker:
+    build: ./dfile/note/
+    container_name: jupyter-worker.vcloudlab.pro
+    ports:
+      - "8889:8888"
+      - "5001:5000"
+    volumes:
+      - ./worker/:/home/jovyan/work/
+    command: start-notebook.sh --NotebookApp.token='' 
